@@ -16,10 +16,6 @@ instrument = input("Enter Instrument Name: ")
 today = date.today()
 stamp = today.strftime("%Y%m%d")
 
-
-# raw_count = 0
-
-
 # Walk through folders to find files
 for (root, dirs, files) in os.walk(path):
 	for file in files:
@@ -43,14 +39,7 @@ for (root, dirs, files) in os.walk(path):
 			# get size of raw file (in bytes)
 			file_size = os.path.getsize(location1)
 			rawTally = rawTally.append({"File Name": file_name, "Path": location2, "Date": date_created, "Size (bytes)": file_size}, ignore_index = True)
-
-
-
-# # summarize number of raw files found
-# print("\nNumber of raw files found: " + str(raw_count))
-# time.sleep(5)
-
-
+			
 # Export runlist to csv file for instrument & formated for Xcaliber
 with open(instrument + "_RawFileTally_" + stamp + ".csv", "w") as fp:
 	rawTally.to_csv(fp, index = False, line_terminator = "\n")
